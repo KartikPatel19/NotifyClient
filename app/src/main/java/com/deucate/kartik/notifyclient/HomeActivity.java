@@ -62,23 +62,11 @@ public class HomeActivity extends AppCompatActivity {
 
         startService(new Intent(this, BackService.class));
 
-        mReference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-
     }
 
     private void ongetPic() throws IOException {
 
-        final File file = File.createTempFile("image", "jpg");
+        File file = File.createTempFile("image", "jpg");
         mStorageReference.getFile(file)
                 .addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
                     @Override
@@ -90,14 +78,6 @@ public class HomeActivity extends AppCompatActivity {
                 Toast.makeText(HomeActivity.this, e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
             }
         });
-
-    }
-
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-
-        Toast.makeText(this, "Really...", Toast.LENGTH_SHORT).show();
 
     }
 
